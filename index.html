@@ -22,15 +22,15 @@
       border-radius:4px;
       margin:8px 0;
       outline:none;
-      padding:8px;
+      padding:3px;
       box-sizing:border-box;
       transition:.3s;
     }
     
-    input[type=text]:focus{
-      border-color:rgb(255, 255, 255);
-      box-shadow:0 0 8px 0 rgb(255, 255, 255);
-    }
+  input[type=text]:focus{
+    border-color:rgb(255, 255, 255);
+    box-shadow:0 0 8px 0 rgb(255, 255, 255);
+  }
 </style>
 
 <script>
@@ -50,11 +50,11 @@
       redirect: 'follow'
     };
     // make API call with parameters and use promises to get response
-    fetch("https://smart-scale-system.azurewebsites.net/api/timbang", requestOptions)
+    fetch("https://smart-scale-system.azurewebsites.net/api/daging", requestOptions)
       .then(function(response) {
           console.log(response.status); // Will show you the status
           if (response.status=200) { //OK
-            document.getElementById('status').innerHTML = "Data telah berhasil diinput ke database";
+            document.getElementById('status').innerHTML = "Data berhasil diinput ke database";
           } else {
             document.getElementById('status').innerHTML = "Data tidak lengkap";
           }
@@ -64,7 +64,7 @@
   }
 
   function tampil() {
-    fetch('https://smart-scale-system.azurewebsites.net/api/tampilkan')
+    fetch('https://smart-scale-system.azurewebsites.net/api/list')
         .then((res) => { return res.json() })
         .then((data) => {
             let result = `<h2 class="w3-center w3-allerta w3-xxlarge">Daging Sisa</h2>`;
@@ -93,23 +93,35 @@
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
   <div class="w3-display-topleft w3-padding-large w3-xlarge">Smart Scale System</div>
-  <div class="w3-display-middle">
+
+  <div class="w3-display-middle" style="text-align: center">
     <h1 class="w3-jumbo w3-animate-top">Good Morning</h1>
     <hr class="w3-border-grey" style="margin:auto;width:40%">
     <h2 class="w3-large w3-center">Masukkan data daging</h2>
 
-  <label>Mode:</label>
-  <input type="text" id="mode"><br>
-  <label>Rasa:</label>
-  <input type="text" id="rasa"><br>
-  <label>Berat:</label>
-  <input type="text" id="berat"><br>
+  <label>Mode:</label><br>
+  <select name="mode" id="mode" style="width:20rem; height:2rem; margin-top:5px">
+    <option value="marinasi">Marinasi</option>
+    <option value="sisa">Sisa</option>
+  </select><br><br>
 
-  <button onclick="tambah(document.getElementById('mode').value,document.getElementById('rasa').value,document.getElementById('berat').value)">Tambahkan</button><br><br>
+  <label>Rasa:</label><br>
+  <select name="rasa" id="rasa" style="width:20rem; height:2rem; margin-top:5px">
+    <option value="bulgogi">Bulgogi</option>
+    <option value="barbeque">Barbeque</option>
+    <option value="spicy">Spicy Bulgogi</option>
+    <option value="soy">Soy Honey</option>
+    <option value="kalbi">Kalbi</option>
+  </select><br><br>
 
-  <button onclick="tampil()">Tampilkan</button>
+  <label>Berat:</label><br>
+  <input type="text" id="berat" style="width:20rem; height:2rem; margin-top:5px"><br><br>
 
-  <h4 id="status"></h4>
+  <button onclick="tambah(document.getElementById('mode').value,document.getElementById('rasa').value,document.getElementById('berat').value)">Tambahkan</button>
+
+  <button onclick="tampil()" style="margin-left:114px" >Tampilkan</button>
+
+  <h5 id="status"></h5>
 
   </div>
 </div>
