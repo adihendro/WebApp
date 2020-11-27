@@ -35,7 +35,7 @@
 
 <script>
   // define the callAPI function that takes a first name and last name as parameters
-  var tambah=(mode,rasa,berat)=>{
+  function tambah(mode,rasa,berat){
     // instantiate a headers object
     var myHeaders = new Headers();
     // add content type header to object
@@ -50,15 +50,14 @@
       redirect: 'follow'
     };
     // make API call with parameters and use promises to get response
-    fetch("https://smart-scale-system.azurewebsites.net/api/Timbang", requestOptions)
+    fetch("https://smart-scale-system.azurewebsites.net/api/timbang", requestOptions)
       .then(response => response.json())
       .then(result => alert(JSON.parse(result).name))
       .catch(error => console.log('error', error));
   }
 
   function tampil() {
-
-    fetch('https://smart-scale-system.azurewebsites.net/api/Tampilkan')
+    fetch('https://smart-scale-system.azurewebsites.net/api/tampilkan')
         .then((res) => { return res.json() })
         .then((data) => {
             let result = `<h2 class="w3-center w3-allerta w3-xxlarge">Daging Sisa</h2>`;
@@ -68,9 +67,9 @@
                     `<div class="w3-panel w3-leftbar w3-border w3-round-small w3-border-blue w3-margin">
                         <h5> User ID: ${mode} </h5>
                         <ul class="w3-ul">
-                            <li> User Full Name : ${mode}</li>
-                            <li> User Email : ${rasa} </li>
-                            <li> User Address : ${berat} </li>
+                            <li> Mode: ${mode}</li>
+                            <li> Rasa: ${rasa} </li>
+                            <li> Berat: ${berat} </li>
                         </ul>
                     </div>`;
                 document.getElementById('result').innerHTML = result;
@@ -78,20 +77,6 @@
         })
 
     }
-
-  // function tampil(){
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
-  //   var requestOptions = {
-  //     method: 'GET',
-  //     headers: myHeaders,
-  //     mode: "cors"
-  //   };
-  //   fetch("https://smart-scale-system.azurewebsites.net/api/Tampilkan", requestOptions)
-  //     .then(response => response.json())
-  //     .then(result => alert(JSON.parse(result).name))
-  //     .catch(error => console.log('error', error));
-  // }
   
 </script>
 
@@ -106,14 +91,13 @@
     <h2 class="w3-large w3-center">Masukkan data daging</h2>
 
   <label>Mode:</label>
-  <input type="text" id="mode2"><br>
+  <input type="text" id="mode"><br>
   <label>Rasa:</label>
-  <input type="text" id="rasa2"><br>
+  <input type="text" id="rasa"><br>
   <label>Berat:</label>
-  <input type="text" id="berat2"><br>
+  <input type="text" id="berat"><br>
 
-  <button onclick="tambah()">Tambahkan</button><br><br>
-    <!-- onclick="tambah(document.getElementById('mode2').value,document.getElementById('rasa2').value,document.getElementById('berat2').value)">Tambahkan -->
+  <button onclick="tambah(document.getElementById('mode').value,document.getElementById('rasa').value,document.getElementById('berat').value)">Tambahkan</button><br><br>
 
   <button onclick="tampil()">Tampilkan</button>
 
