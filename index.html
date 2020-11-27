@@ -67,7 +67,7 @@
     fetch('https://smart-scale-system.azurewebsites.net/api/list')
         .then((res) => { return res.json() })
         .then((data) => {
-            let result = `<h2 class="w3-center w3-allerta w3-xxlarge">Daging Sisa</h2>`;
+            let result = `<h2 class="w3-center w3-allerta w3-xxlarge">Data Hasil Timbang</h2>`;
             data.forEach((daging) => {
                 const {mode,rasa,berat,dateTime} = daging
                 result +=
