@@ -51,21 +51,20 @@
     };
     // make API call with parameters and use promises to get response
     fetch("https://smart-scale-system.azurewebsites.net/api/timbang", requestOptions)
-      .then(response => response.json())
-      .then(result => alert(JSON.parse(result).name))
+      .then(data => { document.getElementById('status').innerHTML = `${message}` })
       .catch(error => console.log('error', error));
   }
 
   function tampil() {
     fetch('https://smart-scale-system.azurewebsites.net/api/tampilkan')
-        .then((res) => { return res.json() })
+        // .then((res) => { return res.json() })
         .then((data) => {
             let result = `<h2 class="w3-center w3-allerta w3-xxlarge">Daging Sisa</h2>`;
             data.forEach((user) => {
-                const {mode,rasa,berat} = user
+                const {mode,rasa,berat,dateTime} = user
                 result +=
                     `<div class="w3-panel w3-leftbar w3-border w3-round-small w3-border-blue w3-margin">
-                        <h5> User ID: ${mode} </h5>
+                        <h5> Tanggal: ${dateTime} </h5>
                         <ul class="w3-ul">
                             <li> Mode: ${mode}</li>
                             <li> Rasa: ${rasa} </li>
@@ -100,6 +99,8 @@
   <button onclick="tambah(document.getElementById('mode').value,document.getElementById('rasa').value,document.getElementById('berat').value)">Tambahkan</button><br><br>
 
   <button onclick="tampil()">Tampilkan</button>
+
+  <h4 id="status"></h4>
 
   </div>
 </div>
