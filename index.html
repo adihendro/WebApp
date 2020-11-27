@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Smart Scale System</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -31,30 +31,56 @@ input[type=text]{
     box-shadow:0 0 8px 0 rgb(255, 255, 255);
   }
 </style>
+
+<script>
+  // define the callAPI function that takes a first name and last name as parameters
+  var callAPI = (mode,rasa,berat)=>{
+    // instantiate a headers object
+    var myHeaders = new Headers();
+    // add content type header to object
+    myHeaders.append("Content-Type", "application/json");
+    // using built in JSON utility package turn object to string and store in a variable
+    var raw = JSON.stringify({"mode":sisa,"rasa":rasa,"berat":berat});
+    // create a JSON object with parameters for API call and store in a variable
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    // make API call with parameters and use promises to get response
+    fetch("https://smart-scale-system.azurewebsites.net/api/Timbang", requestOptions)
+      .then(response => response.text())
+      .then(result => alert(JSON.parse(result).name))
+      .catch(error => console.log('error', error));
+  }
+</script>
+
+
 <body>
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-  <div class="w3-display-topleft w3-padding-large w3-xlarge">
-    Layanan STI 2020
-  </div>
+  <div class="w3-display-topleft w3-padding-large w3-xlarge">Smart Scale System</div>
   <div class="w3-display-middle">
     <h1 class="w3-jumbo w3-animate-top">Good Morning</h1>
     <hr class="w3-border-grey" style="margin:auto;width:40%">
     <h2 class="w3-large w3-center">Masukkan data daging</h2>
 
-    <!-- <form action="./timbang.php"> -->
-      <label for="fname">Mode:</label>
-      <input type="text" id="fname" name="fname"><br>
-      <label for="lname">Rasa:</label>
-      <input type="text" id="lname" name="lname"><br>
-      <label for="lname">Berat:</label>
-      <input type="text" id="lname" name="lname"><br>
-      <input type="submit" value="Submit">
-    <!-- </form> -->
-    
-    <!-- $("button").click(function(){ -->
+    <form>
+      <label for="mode">Mode:</label>
+      <input type="text" id="mode"><br>
+      <label for="rasa">Rasa:</label>
+      <input type="text" id="rasa"><br>
+      <label for="berat">Berat:</label>
+      <input type="text" id="berat"><br>
+
+      <input type="submit" value="Tambahkan" 
+        onclick="callAPI(document.getElementById('mode').value,document.getElementById('rasa').value,document.getElementById('berat').value)">
+      </input>
+    </form>
 
   </div>
+
   <div class="w3-display-bottomleft w3-padding-large">
     Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
   </div>
