@@ -6,35 +6,35 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
-body,h1 {font-family: "Raleway", sans-serif}
-body,h2 {font-family: "Raleway", sans-serif}
-body, html {height: 100%}
-.bgimg {
-  background-image: url(images/forestbridge.jpg);
-  min-height: 100%;
-  background-position: center;
-  background-size: cover;
-}
-input[type=text]{
-    width:100%;
-    border:2px solid #aaa;
-    border-radius:4px;
-    margin:8px 0;
-    outline:none;
-    padding:8px;
-    box-sizing:border-box;
-    transition:.3s;
+  body,h1 {font-family: "Raleway", sans-serif}
+  body,h2 {font-family: "Raleway", sans-serif}
+  body, html {height: 100%}
+  .bgimg {
+    background-image: url(images/forestbridge.jpg);
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
   }
-  
-  input[type=text]:focus{
-    border-color:rgb(255, 255, 255);
-    box-shadow:0 0 8px 0 rgb(255, 255, 255);
-  }
+  input[type=text]{
+      width:100%;
+      border:2px solid #aaa;
+      border-radius:4px;
+      margin:8px 0;
+      outline:none;
+      padding:8px;
+      box-sizing:border-box;
+      transition:.3s;
+    }
+    
+    input[type=text]:focus{
+      border-color:rgb(255, 255, 255);
+      box-shadow:0 0 8px 0 rgb(255, 255, 255);
+    }
 </style>
 
 <script>
   // define the callAPI function that takes a first name and last name as parameters
-  var callAPI = (mode,rasa,berat)=>{
+  var tambah = (mode,rasa,berat)=>{
     // instantiate a headers object
     var myHeaders = new Headers();
     // add content type header to object
@@ -50,6 +50,20 @@ input[type=text]{
     };
     // make API call with parameters and use promises to get response
     fetch("https://smart-scale-system.azurewebsites.net/api/Timbang", requestOptions)
+      .then(response => response.text())
+      .then(result => alert(JSON.parse(result).name))
+      .catch(error => console.log('error', error));
+  }
+
+  var tampil = ()=>{
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    fetch("https://smart-scale-system.azurewebsites.net/api/Tampilkan", requestOptions)
       .then(response => response.text())
       .then(result => alert(JSON.parse(result).name))
       .catch(error => console.log('error', error));
@@ -75,7 +89,8 @@ input[type=text]{
       <input type="text" id="berat"><br>
 
       <input type="submit" value="Tambahkan" 
-        onclick="callAPI(document.getElementById('mode').value,document.getElementById('rasa').value,document.getElementById('berat').value)">
+        onclick="tampil()">
+        <!-- onclick="tambah(document.getElementById('mode').value,document.getElementById('rasa').value,document.getElementById('berat').value)"> -->
       </input>
     </form>
 
