@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
 <style>
   body,h1 {font-family: "Raleway", sans-serif}
   body,h2 {font-family: "Raleway", sans-serif}
@@ -34,7 +35,7 @@
 
 <script>
   // define the callAPI function that takes a first name and last name as parameters
-  var tambah = (mode,rasa,berat)=>{
+  var tambah=(mode,rasa,berat)=>{
     // instantiate a headers object
     var myHeaders = new Headers();
     // add content type header to object
@@ -50,24 +51,25 @@
     };
     // make API call with parameters and use promises to get response
     fetch("https://smart-scale-system.azurewebsites.net/api/Timbang", requestOptions)
-      .then(response => response.text())
+      .then(response => response.json())
       .then(result => alert(JSON.parse(result).name))
       .catch(error => console.log('error', error));
   }
 
-  var tampil = ()=>{
+  function tampil(){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var requestOptions = {
       method: 'GET',
       headers: myHeaders,
-      redirect: 'follow'
+      mode: "cors"
     };
     fetch("https://smart-scale-system.azurewebsites.net/api/Tampilkan", requestOptions)
-      .then(response => response.text())
+      .then(response => response.json())
       .then(result => alert(JSON.parse(result).name))
       .catch(error => console.log('error', error));
   }
+  
 </script>
 
 
@@ -80,19 +82,15 @@
     <hr class="w3-border-grey" style="margin:auto;width:40%">
     <h2 class="w3-large w3-center">Masukkan data daging</h2>
 
-    <form>
-      <label for="mode">Mode:</label>
-      <input type="text" id="mode"><br>
-      <label for="rasa">Rasa:</label>
-      <input type="text" id="rasa"><br>
-      <label for="berat">Berat:</label>
-      <input type="text" id="berat"><br>
+  <label>Mode:</label>
+  <input type="text" id="mode2"><br>
+  <label>Rasa:</label>
+  <input type="text" id="rasa2"><br>
+  <label>Berat:</label>
+  <input type="text" id="berat2"><br>
 
-      <input type="submit" value="Tambahkan" 
-        onclick="tampil()">
-        <!-- onclick="tambah(document.getElementById('mode').value,document.getElementById('rasa').value,document.getElementById('berat').value)"> -->
-      </input>
-    </form>
+  <button onclick="tampil()">Tambahkan</button>
+    <!-- onclick="tambah(document.getElementById('mode2').value,document.getElementById('rasa2').value,document.getElementById('berat2').value)">Tambahkan -->
 
   </div>
 
