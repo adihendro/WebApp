@@ -95,18 +95,18 @@
   <div class="w3-display-topleft w3-padding-large w3-xlarge">Smart Scale System</div>
 
   <div class="w3-display-middle" style="text-align: center">
-    <h1 class="w3-jumbo w3-animate-top">Good Morning</h1>
+    <h1 class="w3-xxlarge w3-animate-top">Good Morning</h1>
     <hr class="w3-border-grey" style="margin:auto;width:40%">
     <h2 class="w3-large w3-center">Masukkan data daging</h2>
 
   <label>Mode:</label><br>
-  <select name="mode" id="mode" style="width:20rem; height:2rem; margin-top:5px">
+  <select id="mode" style="width:80vw; max-width: 20rem; height:2rem; margin-top:5px">
     <option value="marinasi">Marinasi</option>
     <option value="sisa">Sisa</option>
   </select><br><br>
 
   <label>Rasa:</label><br>
-  <select name="rasa" id="rasa" style="width:20rem; height:2rem; margin-top:5px">
+  <select id="rasa" style="width:80vw; max-width: 20rem; height:2rem; margin-top:5px">
     <option value="bulgogi">Bulgogi</option>
     <option value="barbeque">Barbeque</option>
     <option value="spicy bulgogi">Spicy Bulgogi</option>
@@ -115,11 +115,11 @@
   </select><br><br>
 
   <label>Berat (kg):</label><br>
-  <input type="text" id="berat" style="width:20rem; height:2rem; margin-top:5px"><br><br>
+  <input type="text" id="berat" style="width:80vw; max-width: 20rem; height:2rem; margin-top:5px"><br><br>
 
   <button onclick="tambah(document.getElementById('mode').value,document.getElementById('rasa').value,document.getElementById('berat').value)">Tambahkan</button>
 
-  <button onclick="tampil()" style="margin-left:114px" >Tampilkan</button>
+  <button onclick="tampil()" style="margin-left:16vmin">Tampilkan</button>
 
   <h5 id="status"></h5>
 
