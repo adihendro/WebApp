@@ -51,17 +51,25 @@
     };
     // make API call with parameters and use promises to get response
     fetch("https://smart-scale-system.azurewebsites.net/api/timbang", requestOptions)
-      .then(data => { document.getElementById('status').innerHTML = `${message}` })
-      .catch(error => console.log('error', error));
+      .then(function(response) {
+          console.log(response.status); // Will show you the status
+          if (response.status=200) { //OK
+            document.getElementById('status').innerHTML = "Data telah berhasil diinput ke database";
+          } else {
+            document.getElementById('status').innerHTML = "Data tidak lengkap";
+          }
+      })
+      // .then(data => { document.getElementById('status').innerHTML = `${message}` })
+      // .catch(error => console.log('error', error));
   }
 
   function tampil() {
     fetch('https://smart-scale-system.azurewebsites.net/api/tampilkan')
-        // .then((res) => { return res.json() })
+        .then((res) => { return res.json() })
         .then((data) => {
             let result = `<h2 class="w3-center w3-allerta w3-xxlarge">Daging Sisa</h2>`;
-            data.forEach((user) => {
-                const {mode,rasa,berat,dateTime} = user
+            data.forEach((daging) => {
+                const {mode,rasa,berat,dateTime} = daging
                 result +=
                     `<div class="w3-panel w3-leftbar w3-border w3-round-small w3-border-blue w3-margin">
                         <h5> Tanggal: ${dateTime} </h5>
@@ -73,6 +81,7 @@
                     </div>`;
                 document.getElementById('result').innerHTML = result;
             });
+            document.getElementById('status').innerHTML = "Data berhasil dimuat, silakan scroll ke bawah";
         })
 
     }
