@@ -53,14 +53,13 @@
     fetch("https://smart-scale-system.azurewebsites.net/api/daging", requestOptions)
       .then(function(response) {
           console.log(response.status); // Will show you the status
+          console.log(requestOptions); // Will show you the status
           if (response.status==200) { //OK
             document.getElementById('status').innerHTML = "Data berhasil diinput ke database";
           } else {
             document.getElementById('status').innerHTML = "Data tidak lengkap";
           }
       })
-      // .then(data => { document.getElementById('status').innerHTML = `${message}` })
-      // .catch(error => console.log('error', error));
   }
 
   function tampil() {
@@ -76,7 +75,7 @@
                         <ul class="w3-ul">
                             <li> Mode: ${mode}</li>
                             <li> Rasa: ${rasa} </li>
-                            <li> Berat: ${berat} </li>
+                            <li> Berat: ${berat} kg</li>
                         </ul>
                     </div>`;
                 document.getElementById('result').innerHTML = result;
@@ -126,12 +125,11 @@
   </div>
 </div>
 
+<div id="result" class="w3-container"></div>
 
-  <div id="result" class="w3-container"></div>
-
-  <div class="w3-display-bottomleft w3-padding-large w3-text-white">
-    Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
-  </div>
+<div class="w3-display-bottomleft w3-padding-large w3-text-white">
+  Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
+</div>
 
 
 </body>
